@@ -5,6 +5,7 @@
 #include <util/delay.h>
 
 ISR(SPI_STC_vect) {
+    //receive data from SPI
     char data = SPDR;
     _delay_ms(20);
     if (data == 'a') {
@@ -20,9 +21,13 @@ ISR(SPI_STC_vect) {
 }
 
 int main() {
+    //initiate leds
     LEDs_init();
+    //initiate SPI
     SPI_INIT(slave, SPI_PS_128);
+    //initiate SPI Interrupt
     SPI_INTEN();
+    //initaite the glopal interrupt
     sei();
     while (1) {
     }
