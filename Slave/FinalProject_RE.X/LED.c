@@ -5,6 +5,7 @@
 #include "LED.h"
 
 void LEDs_init() {
+    //initiate leds
     DDRC |= (1 << LED1) | (1 << LED0);
 }
 
