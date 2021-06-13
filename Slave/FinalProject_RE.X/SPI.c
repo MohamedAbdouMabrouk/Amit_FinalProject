@@ -10,12 +10,14 @@ void SPI_INIT(int Master_Slave, int PRESCALER) {
         SPCR |= (1 << 0) | (1 << 1);
         DDRB |= (1 << MOSI) | (1 << SCK) | (1 << SS);
     } else {
+        // pin config for Slave
         DDRB |= (1 << MISO);
     }
     SPCR |= (1 << SPE);
 }
 
 char SPI_RECIVIER() {
+    //wait for data
     while (!(SPSR & (1 << SPIF)));
     return SPDR;
 }
